@@ -62,34 +62,61 @@ public:
 template <class ValType>
 TVector<ValType>::TVector(int s, int si)
 {
-	for(int i=si;i<s;i++)
+	Size=s;
+	StartIndex=si;
+	pVector=new ValType[Size];
+	for(int i=0; i<Size; i++)
 		pVector[i]=0;
 } 
 
 template <class ValType> //конструктор копирования
 TVector<ValType>::TVector(const TVector<ValType> &v)
 {
-} /*-------------------------------------------------------------------------*/
+	Size=v.Size;
+	pVector=new VolType[Size];
+	for(int i=0; i<Size; i++)
+		pVetor[i]=v.pVector[i];
+} 
 
 template <class ValType>
 TVector<ValType>::~TVector()
 {
-} /*-------------------------------------------------------------------------*/
+	delete[] pVecror;
+} 
 
 template <class ValType> // доступ
 ValType& TVector<ValType>::operator[](int pos)
 {
-} /*-------------------------------------------------------------------------*/
+	return pVector[pos];
+} 
 
 template <class ValType> // сравнение
 bool TVector<ValType>::operator==(const TVector &v) const
 {
-} /*-------------------------------------------------------------------------*/
+	if(Size!=v.Size)
+		return false;
+	else
+		for(int i=0; i<Size; i++)
+			if(pVector[i]!=v.pVector[i])
+				return false;
+	return true;
+} 
 
 template <class ValType> // сравнение
 bool TVector<ValType>::operator!=(const TVector &v) const
 {
-} /*-------------------------------------------------------------------------*/
+	if(Size==v.Size)
+		for(int i=0; i<Size; i++)
+		{
+			if(pVector[i]!=v.pVector[i])
+			{
+				return true;
+			}
+		}
+	else
+		return true;
+	return false; 
+} 
 
 template <class ValType> // присваивание
 TVector<ValType>& TVector<ValType>::operator=(const TVector &v)
