@@ -165,17 +165,39 @@ TVector<ValType> TVector<ValType>::operator*(const ValType &val)
 template <class ValType> // сложение
 TVector<ValType> TVector<ValType>::operator+(const TVector<ValType> &v)
 {
-} /*-------------------------------------------------------------------------*/
+	TVector<ValType> res(Size);
+	if (Size != v.Size)
+	{
+		throw(5);
+	}
+	for (int i = 0; i < Size; i++)
+		res.pVector[i] = pVector[i] + v.pVector[i];
+	return res;
+} 
 
 template <class ValType> // вычитание
 TVector<ValType> TVector<ValType>::operator-(const TVector<ValType> &v)
 {
-} /*-------------------------------------------------------------------------*/
+	TVector<ValType> res(Size);
+	if (Size != v.Size)
+	{
+		throw(5);
+	}
+	for (int i = 0; i < Size; i++)
+		res.pVector[i] = pVector[i] - v.pVector[i];
+	return res;
+} 
 
 template <class ValType> // скалярное произведение
 ValType TVector<ValType>::operator*(const TVector<ValType> &v)
 {
-} /*-------------------------------------------------------------------------*/
+	ValType res=0;
+	if (Size != v.Size)
+		throw(5);
+	for (int i = 0; i < Size; i++)
+		res += pVector[i] * v.pVector[i];
+	return res;
+} 
 
 
 // Верхнетреугольная матрица
