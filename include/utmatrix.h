@@ -73,15 +73,15 @@ template <class ValType> //конструктор копирования
 TVector<ValType>::TVector(const TVector<ValType> &v)
 {
 	Size=v.Size;
-	pVector=new VolType[Size];
+	pVector=new ValType[Size];
 	for(int i=0; i<Size; i++)
-		pVetor[i]=v.pVector[i];
+		pVector[i]=v.pVector[i];
 } 
 
 template <class ValType>
 TVector<ValType>::~TVector()
 {
-	delete[] pVecror;
+	delete[] pVector;
 } 
 
 template <class ValType> // доступ
@@ -123,7 +123,7 @@ TVector<ValType>& TVector<ValType>::operator=(const TVector &v)
 {
 	if (Size != v.Size)
 	{
-		delite[] pVector;
+		delete[] pVector;
 		Size = v.Size;
 		pVector = new ValType[v.Size];
 	}
