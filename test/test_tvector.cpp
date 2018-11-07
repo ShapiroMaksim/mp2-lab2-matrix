@@ -31,16 +31,18 @@ TEST(TVector, can_create_copied_vector)
 
 TEST(TVector, copied_vector_is_equal_to_source_one)
 {
+
 	TVector<int> v1(3), v2(v1);
-  ASSERT_EQ(v1.GetSize,v2.GetSize);
-  ASSERT_EQ(v1.GetStartIndex, v2.GetStartIndex);
+  ASSERT_EQ(v1.GetSize(),v2.GetSize());
+  ASSERT_EQ(v1.GetStartIndex(), v2.GetStartIndex());
   for (int i = 0; i < 3; i++)
 	  ASSERT_EQ(v1[i], v2[i]);
 }
 
 TEST(TVector, copied_vector_has_its_own_memory)
 {
-  ADD_FAILURE();
+	TVector<int> v1(3), v2(v1);
+  EXPECT_NE(&v1,&v2);
 }
 
 TEST(TVector, can_get_size)
@@ -93,7 +95,7 @@ TEST(TVector, assign_operator_change_vector_size)
 {
 	TVector<int> v1(3), v2(4);
 	v1 = v2;
-  EXPECT_EQ(v1.GetSize, v2.GetSize);
+  EXPECT_EQ(v1.GetSize(), v2.GetSize());
 }
 
 TEST(TVector, can_assign_vectors_of_different_size)
