@@ -73,6 +73,7 @@ template <class ValType> //конструктор копирования
 TVector<ValType>::TVector(const TVector<ValType> &v)
 {
 	Size=v.Size;
+	StartIndex = v.StartIndex;
 	pVector=new ValType[Size];
 	for(int i=0; i<Size; i++)
 		pVector[i]=v.pVector[i];
@@ -87,7 +88,9 @@ TVector<ValType>::~TVector()
 template <class ValType> // доступ
 ValType& TVector<ValType>::operator[](int pos)
 {
-	return pVector[pos];
+	if (pos<0 || pos - StartIndex > Size || StartIndex < 0)
+		throw -1;
+	return pVector[pos-StartIndex];
 } 
 
 template <class ValType> // сравнение
@@ -127,11 +130,11 @@ TVector<ValType>& TVector<ValType>::operator=(const TVector &v)
 		Size = v.Size;
 		pVector = new ValType[v.Size];
 	}
+	StartIndex = v.StartIndex;
 	for (int i = 0; i < Size; i++)
 	{
 		pVector[i] = v.pVector[i];
 	}
-	StartIndex = v.StartIndex;
 	return *this;
 } 
 
@@ -165,7 +168,7 @@ TVector<ValType> TVector<ValType>::operator*(const ValType &val)
 template <class ValType> // сложение
 TVector<ValType> TVector<ValType>::operator+(const TVector<ValType> &v)
 {
-	TVector<ValType> res(Size);
+	TVector<ValType> res(Size,StartIndex);
 	if (Size != v.Size)
 	{
 		throw(5);
@@ -178,7 +181,7 @@ TVector<ValType> TVector<ValType>::operator+(const TVector<ValType> &v)
 template <class ValType> // вычитание
 TVector<ValType> TVector<ValType>::operator-(const TVector<ValType> &v)
 {
-	TVector<ValType> res(Size);
+	TVector<ValType> res(Size,StartIndex);
 	if (Size != v.Size)
 	{
 		throw(5);
