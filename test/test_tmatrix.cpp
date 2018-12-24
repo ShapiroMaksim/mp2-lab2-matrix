@@ -27,10 +27,8 @@ TEST(TMatrix, can_create_copied_matrix)
 TEST(TMatrix, copied_matrix_is_equal_to_source_one)
 {
 	TMatrix<int> m1(5), m2(m1);
-	ASSERT_EQ(m1.GetSize(),m2.GetSize());
-	for(int i=0; i<5; i++)
-		for(int j=0; j<5; j++)
-			ASSERT_EQ(m1[i][j-i],m2[i][j-i]);
+	EXPECT_EQ(m1,m2);
+	
 }
 
 TEST(TMatrix, copied_matrix_has_its_own_memory)
