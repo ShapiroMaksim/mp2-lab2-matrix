@@ -123,27 +123,42 @@ TEST(TVector, vectors_with_different_size_are_not_equal)
   EXPECT_NE(v1==v2,true);
 }
 
-TEST(TVector, can_add_scalar_to_vector)
+TEST(TVector, can_add_scalar_to_vector)//............
 {
-	TVector<int> v(3);
-  ASSERT_NO_THROW(v+1);
+	TVector <int> v1(3), v2(3);
+	for (int i = 0; i < 3; i++)
+	{
+		v1[i] = 2;
+		v2[i] = 1;
+	}
+	EXPECT_EQ(v1,v2 + 1);
 }
 
 TEST(TVector, can_subtract_scalar_from_vector)
 {
-	TVector<int> v(3);
-  ASSERT_NO_THROW(v-1);
+	TVector <int> v1(3), v2(3);
+	for (int i = 0; i < 3; i++)
+	{
+		v1[i] = 2;
+		v2[i] = 3;
+	}
+	EXPECT_EQ(v1,v2 - 1);
 }
 
 TEST(TVector, can_multiply_scalar_by_vector)
 {
-	TVector<int> v(3);
-  ASSERT_NO_THROW(v*2);
+	TVector <int> v1(3), v2(3);
+	for (int i = 0; i < 3; i++)
+	{
+		v1[i] = 4;
+		v2[i] = 2;
+	}
+	EXPECT_EQ(v1,v2 * 2);
 }
 
 TEST(TVector, can_add_vectors_with_equal_size)
 {
-	TVector<int> v1(3), v2(4);
+	TVector<int> v1(3), v2(3);
   ASSERT_NO_THROW(v1+v2);
 }
 
